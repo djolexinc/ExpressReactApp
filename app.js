@@ -10,7 +10,7 @@ var mungosConn = require('./config/mungos/mungosConnect');
 var app = express();  //express okine i napravi app objekat
 
 
-var port = process.env.port || 3001;  // port, ((process.env.port je nesto dinamic?))
+var port = process.env.port || 5000;  // port, ((process.env.port je nesto dinamic?))
 
 app.use('/assets', express.static(__dirname+'/public'));  // ako se okine asrts nadji u express.static dirname= moj folder/public.
 app.set('veiw engine', 'ejs');
@@ -24,7 +24,7 @@ app.get('/', function(req,res){
 //mongoose.connect(config.getDbConnectionString(), {useNewUrlParser: true} );
 setupController(app);  //prosledi app, da bi mogao da napravi array na trigerovanje /get-a
 apiController(app); //prosledi app kontrolerima, da bi mogli da registruju
-//mungosConn(app);
+mungosConn(app);
 //testApi(app);
 
 app.listen(port);  //slusaj gde se pokrece aplikacija
