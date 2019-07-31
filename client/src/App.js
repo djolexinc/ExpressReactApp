@@ -27,24 +27,45 @@ const App = () => {
 //myArray.map(element => {
  // return element + 1;
 //});
- // useEffect(() => {
-  //  fetchData();
- // });
+ useEffect(() => {
+    fetchData();
+  },[]);
 //      <span>{JSON.stringify(jsonValue)}</span> line 22
   return (
     <div>
       <div style={{backgroundColor: "blue"}}>.</div><br />
-
+      
       <hr />
       <span>Has error: {JSON.stringify(hasError)}</span>
       <hr />
-      <span>{jsonValue._id}</span>
-      <button onClick={fetchData()}> Govedo </button>
-      {
+      {//BRAVO DJOLE MADAFAKA OVAKO SE POZIVA HOOK
+       }
+      <button onClick={()=> fetchData()}> Refresh data </button> 
+      <form method="POST" action="http://localhost:5000/api/todo">
+       User: <input type="text" id ="firstname" name="firstname"></input> 
+       Todo: <input type="text" id ="todo" name="todo"></input> 
+       Done: <input type="checkbox" id ="isDone" name="isDone"></input> 
+       Attachment: <input type="checkbox" id ="hasAttachment" name="hasAttachment"></input> 
+       <input type="submit" value="submit"></input>
+      </form>
+       <hr />
+       
+      <form method="POST" action="http://localhost:5000/api/bool">
+         <input type="submit" value="submit1"></input>
+      </form>
+
+
+      
+      <hr />
+      <table style ={{border: "1px dotted blue"}}>
+      {    
         jsonValue.map( jsonItem =>{
-        return <table style ={{border: "3px solid blue"}}> <li><input type="checkbox" id={jsonItem._id}></input>User: {jsonItem.username} has items: {jsonItem.todo}</li> </table>
+            return <li><input type="checkbox" id={jsonItem._id}></input>User: {jsonItem.username}, has items: {jsonItem.todo}   ____   is done: [{JSON.stringify(jsonItem.isDone)}],
+             has attachment: [{JSON.stringify(jsonItem.hasAttachment)}] </li> 
+             
           })
       }
+      </table>
     </div>
   );
 };

@@ -70,4 +70,29 @@ module.exports = function(app){
                 res.send('sucess');
             })
         })
+
+        
+    app.post('/api/bool', function(req, res){  
+        if (req.body.id)
+        {
+            appModel1.findByIdAndUpdate(req.body.id, {todo: req.body.todo, isDone: req.body.isDone, hasAttachment: req.body.hasAttachment}, 
+                function(err, todo){
+                if (err) throw err;
+                res.send('Radi');
+            });     
+        }
+        else
+        {
+                var newTodo1 = appModel1 ({
+                    username: 'test',
+                    todo: 'd',
+                    isDone: false,
+                    hasAttachment: false
+                });
+                newTodo1.save(function(err){
+                    if (err) throw err;
+                    res.send('sucess');
+                });
+        }
+    })
 }
