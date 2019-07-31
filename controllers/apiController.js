@@ -83,16 +83,25 @@ module.exports = function(app){
         }
         else
         {
+            if(req.body.isDone) var isDoneBool = true
+            else isDoneBool = false;
+            if(req.body.isDone) var hasAttachBool = true
+            else hasAttachBool = false;
+
                 var newTodo1 = appModel1 ({
                     username: 'test',
                     todo: 'd',
-                    isDone: false,
-                    hasAttachment: false
+                    isDone: isDoneBool,
+                    hasAttachment: hasAttachBool
                 });
                 newTodo1.save(function(err){
                     if (err) throw err;
                     res.send('sucess');
                 });
         }
+    })
+    app.post('/api/post1', function(req, res){
+        res.send('radi post api');
+        console.log(new Date().toLocaleTimeString()+': radi post api');
     })
 }

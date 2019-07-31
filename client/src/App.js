@@ -4,8 +4,23 @@ const App = () => {
   const [hasError, setErrors] = useState(false);
   const [jsonValue, setValue] = useState([]);
 
+
+  const [method, setMethod] = useState('DELETE');
+ 
+  const options = {
+    method: method,
+    body: "'id': '5d41ac86205db8b1a08b7023'",
+    headers: {
+    'Content-Type': 'application/json'}
+  };
+
+  async function trySomething() {
+    const res = await fetch("http://localhost:5000/api/post1", options);
+  }
+
+
   async function fetchData() {
-    let res = await fetch("http://localhost:5000/api/one/test");
+    const res = await fetch("http://localhost:5000/api/one/test");
     if(res.ok)
     res
       .json()
@@ -51,18 +66,18 @@ const App = () => {
        <hr />
        
       <form method="POST" action="http://localhost:5000/api/bool">
-         <input type="submit" value="submit1"></input>
+          Done: <input type="checkbox" id ="isDone" name="isDone"></input> 
+          Attachment: <input type="checkbox" id ="hasAttachment" name="hasAttachment"></input> 
+         <input type="submit" value="Upload data"></input>
       </form>
-
+      <button onClick={()=> trySomething()}> Try api post data </button> 
 
       
       <hr />
-      <table style ={{border: "1px dotted blue"}}>
+      <table style ={{border: "1px solid blue"}}>
       {    
         jsonValue.map( jsonItem =>{
-            return <li><input type="checkbox" id={jsonItem._id}></input>User: {jsonItem.username}, has items: {jsonItem.todo}   ____   is done: [{JSON.stringify(jsonItem.isDone)}],
-             has attachment: [{JSON.stringify(jsonItem.hasAttachment)}] </li> 
-             
+            return <li><input type="checkbox" id={jsonItem._id} checked={jsonItem.isDone}></input>User: {jsonItem.username}, has items: {jsonItem.todo}   ____ has attachment: [{JSON.stringify(jsonItem.hasAttachment)}] </li>  
           })
       }
       </table>
