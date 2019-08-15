@@ -96,7 +96,7 @@ module.exports = function(app){
                 });
                 newTodo1.save(function(err){
                     if (err) throw err;
-                    res.send('sucess');
+               //     res.send('sucess');
                 });
         }
     })

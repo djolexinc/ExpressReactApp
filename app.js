@@ -20,12 +20,11 @@ app.get('/', function(req,res){
         res.send('send');
 });
 
-//mongoose.connect(config.getDbConnectionString());  //ovako se passuje  settings
+//mongoose.connect(config.getDbConnectionString());  //ovako se passuje  settings, mozes direkt tamo
 //mongoose.connect(config.getDbConnectionString(), {useNewUrlParser: true} );
 setupController(app);  //prosledi app, da bi mogao da napravi array na trigerovanje /get-a
 apiController(app); //prosledi app kontrolerima, da bi mogli da registruju
 mungosConn(app);
-//testApi(app);
 
 app.listen(port);  //slusaj gde se pokrece aplikacija
 
